@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: run terraform
         run: |
-          docker run -i -t hashicorp/terraform:latest apply -auto-approve ./terraform
+          docker run -i hashicorp/terraform:latest apply -auto-approve ./terraform
         env:
           TF_VAR_APP_ID: ${{ secrets.APP_ID }}
           TF_VAR_PASSWORD: ${{ secrets.PASSWORD }}
