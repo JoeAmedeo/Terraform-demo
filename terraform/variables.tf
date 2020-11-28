@@ -1,19 +1,19 @@
-variable "appId" {
+variable "APP_ID" {
     type = string
     description = "app id associated with the service principle used for authentication"
 }
 
-variable "password" {
+variable "PASSWORD" {
     type = string
     description = "password associated with the service principle used for authentication"
 }
 
-variable "resourceGroupName" {
+variable "RESOURCE_GROUP_NAME" {
     type = string
     description = "prefix for all resources created"
 }
 
-variable "region" {
+variable "REGION" {
     type = string
     description = "geographical region to deploy your cluster"
 }

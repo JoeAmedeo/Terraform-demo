@@ -6,9 +6,9 @@ provider "azurerm" {
 #Resource group already created
 
 resource "azurerm_kubernetes_cluster" "default" {
-    name = "${var.resourceName}-aks"
-    location = var.region
-    resource_group_name = var.resourceGroupName
+    name = "${var.RESOURCE_GROUP_NAME}-aks"
+    location = var.REGION
+    resource_group_name = "${var.RESOURCE_GROUP_NAME}-rg"
 
     default_node_pool {
       name = "default"
@@ -17,8 +17,8 @@ resource "azurerm_kubernetes_cluster" "default" {
     }
 
     service_principal {
-      client_id = var.appId
-      client_secret = var.password
+      client_id = var.APP_ID
+      client_secret = var.PASSWORD
     }
 
     role_based_access_control {
