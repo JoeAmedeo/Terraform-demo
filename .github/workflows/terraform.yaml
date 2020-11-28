@@ -11,6 +11,8 @@ jobs:
     name: Provision Azure resources
     runs-on: ubuntu-latest 
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: run terraform
         run: |
           docker run -i hashicorp/terraform:latest apply -auto-approve ./terraform
