@@ -1,0 +1,22 @@
+name: Terraform Provisioning
+on: 
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  provision:
+    name: Provision Azure resources
+    runs-on: ubuntu-latest 
+    steps:
+      - name: run terraform
+        working-directory: ./terraform
+        run: |
+          terraform apply .
+        env:
+          TF_VAR_appId: $${{ secrets.appId }}
+          TF_VAR_password: ${{ secrets.password }}
+          TF_VAR_resourceGroupName: "Joe.Amedeo"
+          TF_VAR_region: "East US 1"
