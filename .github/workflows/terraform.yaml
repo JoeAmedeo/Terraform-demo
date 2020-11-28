@@ -12,9 +12,8 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - name: run terraform
-        working-directory: ./terraform
         run: |
-          docker run -i -t hashicorp/terraform:latest apply -auto-approve .
+          docker run -i -t hashicorp/terraform:latest apply -auto-approve ./terraform
         env:
           TF_VAR_APP_ID: ${{ secrets.APP_ID }}
           TF_VAR_PASSWORD: ${{ secrets.PASSWORD }}
