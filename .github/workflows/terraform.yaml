@@ -16,7 +16,7 @@ jobs:
         run: |
           terraform apply -auto-approve .
         env:
-          TF_VAR_APP_ID: $${{ secrets.APP_ID }}
+          TF_VAR_APP_ID: ${{ secrets.APP_ID }}
           TF_VAR_PASSWORD: ${{ secrets.PASSWORD }}
           TF_VAR_RESOURCE_GROUP_NAME: "Joe.Amedeo"
           TF_VAR_REGION: "East US 1"
