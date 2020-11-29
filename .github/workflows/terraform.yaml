@@ -16,8 +16,10 @@ jobs:
       - name: ls
         run: ls -R
       - name: run terraform
+        working-directory: ./terraform
         run: |
-          docker run -i hashicorp/terraform:latest apply -auto-approve terraform
+          docker run -i hashicorp/terraform:latest init
+          docker run -i hashicorp/terraform:latest apply -auto-approve .
         env:
           TF_VAR_APP_ID: ${{ secrets.APP_ID }}
           TF_VAR_PASSWORD: ${{ secrets.PASSWORD }}
