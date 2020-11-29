@@ -16,7 +16,6 @@ jobs:
       - name: ls
         run: ls -R
       - name: run terraform
-        working-directory: ${{ env. }}
         run: |
           docker run -i hashicorp/terraform:latest apply -auto-approve ./terraform
         env:
