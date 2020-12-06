@@ -9,7 +9,11 @@ defaults:
 jobs:
   provision:
     name: Provision Azure resources
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      TENANT_ID: ${{ secrets.TENANT_ID }}
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -17,7 +21,7 @@ jobs:
         run: ls -R
       - name: azure login
         run: |
-          az login --service-principal -u ${{ secrets.APP_ID }} -p ${{ secrets.PASSWORD }} --tenant ${{ secrets.TENANT_ID }}
+          az login --service-principal -u $APP_ID -p $PASSWORD --tenant $TENANT_ID
       - name: run terraform
         working-directory: ./terraform
         run: |
@@ -25,7 +29,7 @@ jobs:
           terraform plan -input=false -out-tfplan
           terraform apply -input=false tfplan
         env:
-          TF_VAR_APP_ID: ${{ secrets.APP_ID }}
-          TF_VAR_PASSWORD: ${{ secrets.PASSWORD }}
+          TF_VAR_APP_ID: ${{ env.APP_ID }}
+          TF_VAR_PASSWORD: ${{ env.PASSWORD }}
           TF_VAR_RESOURCE_GROUP_NAME: "Joe.Amedeo"
           TF_VAR_REGION: "East US 1"
