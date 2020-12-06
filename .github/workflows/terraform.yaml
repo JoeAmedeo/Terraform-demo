@@ -24,7 +24,7 @@ jobs:
         run: ls -R
       - name: azure login
         run: |
-          az login --service-principal -u $APP_ID -p $PASSWORD --tenant $TENANT_ID --subscription $SUBSCRIPTION_ID
+          az login --service-principal -u $APP_ID -p $PASSWORD -t $TENANT_ID
       - name: run terraform
         working-directory: ./terraform
         run: |
