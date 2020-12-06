@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@master
       - name: azure login
         run: |
-          az login --service-principal -u $APP_ID -p $PASSWORD -t $TENANT_ID
+          az login --service-principal -u $SERVICE_PRINCIPAL_NAME -p $PASSWORD -t $TENANT_ID
       - name: run terraform
         working-directory: ./terraform
         run: |
