@@ -17,10 +17,7 @@ jobs:
         run: ls -R
       - name: azure login
         run: |
-          az login -u $APP_ID -p $PASSWORD
-        env:
-          APP_ID: ${{ secrets.APP_ID }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+          az login -u ${{ secrets.APP_ID }} -p ${{ secrets.PASSWORD }}
       - name: run terraform
         working-directory: ./terraform
         run: |
