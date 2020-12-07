@@ -8,6 +8,11 @@ variable "PASSWORD" {
     description = "password associated with the service principle used for authentication"
 }
 
+variable "TENANT_ID" {
+    type = string
+    description = "ID to determine your azure account"
+}
+
 variable "RESOURCE_GROUP_NAME" {
     type = string
     description = "prefix for all resources created"
