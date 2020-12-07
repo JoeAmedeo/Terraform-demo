@@ -1,5 +1,10 @@
 provider "azurerm" {
     version = "=2.25.0"
+
+    client_id = var.APP_ID
+    client_secret = var.PASSWORD
+    tenant_id = var.TENANT_ID
+
     features {}
 }
 

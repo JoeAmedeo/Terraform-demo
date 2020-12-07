@@ -14,6 +14,7 @@ jobs:
       APP_ID: ${{ secrets.APP_ID }}
       PASSWORD: ${{ secrets.PASSWORD }}
       TENANT_ID: ${{ secrets.TENANT_ID }}
+      TENANT_DOMAIN: ${{ secrets.TENANT_DOMAIN}}
       SERVICE_PRINCIPAL_NAME: ${{ secrets.SERVICE_PRINCIPAL_NAME }}
       OBJECT_ID: ${{ secrets.OBJECT_ID }}
       SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
@@ -22,7 +23,7 @@ jobs:
         uses: actions/checkout@master
       - name: azure login
         run: |
-          az login --service-principal -u $APP_ID -p $PASSWORD -t $TENANT_ID --allow-no-subscriptions
+          az login --service-principal -u $APP_ID -p $PASSWORD -t $TENANT_DOMAIN --allow-no-subscriptions
       - name: run terraform
         working-directory: ./terraform
         run: |
@@ -32,5 +33,6 @@ jobs:
         env:
           TF_VAR_APP_ID: ${{ env.APP_ID }}
           TF_VAR_PASSWORD: ${{ env.PASSWORD }}
+          TF_VAR_TENANT_ID: ${{ env.TENANT_ID }}
           TF_VAR_RESOURCE_GROUP_NAME: "Joe.Amedeo"
           TF_VAR_REGION: "East US 1"
