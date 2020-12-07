@@ -13,6 +13,11 @@ variable "TENANT_ID" {
     description = "ID to determine your azure account"
 }
 
+variable SUBSCRIPTION_ID {
+    type = string
+    description = "ID to associate terraform to a particular azure subscription to create your resources in"
+}
+
 variable "RESOURCE_GROUP_NAME" {
     type = string
     description = "prefix for all resources created"

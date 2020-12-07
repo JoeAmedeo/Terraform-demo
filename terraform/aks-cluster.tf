@@ -4,6 +4,7 @@ provider "azurerm" {
     client_id = var.APP_ID
     client_secret = var.PASSWORD
     tenant_id = var.TENANT_ID
+    subscription_id = var.SUBSCRIPTION_ID
 
     features {}
 }
