@@ -27,7 +27,7 @@ jobs:
         working-directory: ./terraform
         run: |
           terraform init -input=false
-          terraform plan -input=false -out-tfplan .
+          terraform plan -input=false -out=tfplan .
           terraform apply -input=false tfplan
         env:
           TF_VAR_APP_ID: ${{ env.APP_ID }}
