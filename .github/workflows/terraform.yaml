@@ -27,6 +27,9 @@ jobs:
           terraform init -input=false
           terraform plan -input=false -out=tfplan .
           terraform apply -input=false tfplan
+          terraform output kube_config >> config
+          echo "This is where I would apply a helm chart or manifest file"
+          rm config
         env:
           TF_VAR_APP_ID: ${{ env.APP_ID }}
           TF_VAR_PASSWORD: ${{ env.PASSWORD }}
