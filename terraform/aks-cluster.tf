@@ -6,6 +6,8 @@ provider "azurerm" {
     tenant_id = var.TENANT_ID
     subscription_id = var.SUBSCRIPTION_ID
 
+    skip_provider_registration = true
+
     features {}
 }
 
