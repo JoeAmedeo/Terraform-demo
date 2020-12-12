@@ -16,7 +16,7 @@ provider "azurerm" {
 resource "azurerm_kubernetes_cluster" "default" {
     name = "${var.RESOURCE_GROUP_NAME}-aks"
     location = var.REGION
-    resource_group_name = "$Joe.Amedeo-rg"
+    resource_group_name = "Joe.Amedeo-rg"
     dns_prefix = "${var.RESOURCE_GROUP_NAME}-k8s"
 
     default_node_pool {
