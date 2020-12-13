@@ -35,5 +35,6 @@ jobs:
           TF_VAR_PASSWORD: ${{ env.PASSWORD }}
           TF_VAR_TENANT_ID: ${{ env.TENANT_ID }}
           TF_VAR_SUBSCRIPTION_ID: ${{ env.SUBSCRIPTION_ID }}
-          TF_VAR_RESOURCE_GROUP_NAME: "joe-amedeo"
+          TF_VAR_RESOURCE_PREFIX: "joe-amedeo"
+          TF_VAR_RESOURCE_GROUP_NAME: "Joe.Amedeo-rg"
           TF_VAR_REGION: "East US"

@@ -20,6 +20,11 @@ variable SUBSCRIPTION_ID {
 
 variable "RESOURCE_GROUP_NAME" {
     type = string
+    description = "name of the resource group used for resource creation"
+}
+
+variable "RESOURCE_PREFIX" {
+    type = string
     description = "prefix for all resources created"
 }
 

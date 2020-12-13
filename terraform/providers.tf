@@ -7,4 +7,11 @@ terraform {
       version = "2.25.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name = "${var.RESOURCE_GROUP_NAME}"
+    storage_account_name = "${var.RESOURCE_PREFIX}_storage_account"
+    container_name = "tfstate"
+    key = "terraform.tfstate"
+  }
 }

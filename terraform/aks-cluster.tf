@@ -13,11 +13,29 @@ provider "azurerm" {
 
 #Resource group already created
 
+resource "azurerm_storage_account" "default" {
+  name = "${var.RESOURCE_PREFIX}-storage-account"
+  resource_group_name = var.RESOURCE_GROUP_NAME
+  location = var.REGION
+  account_tier = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "default" {
+  name = "tfstate"
+  storage_account_name = azurerm_storage_account.default.name
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "default" {
+  
+}
+
 resource "azurerm_kubernetes_cluster" "default" {
-    name = "${var.RESOURCE_GROUP_NAME}-aks"
+    name = "${var.RESOURCE_PREFIX}-aks"
     location = var.REGION
-    resource_group_name = "Joe.Amedeo-rg"
-    dns_prefix = "${var.RESOURCE_GROUP_NAME}-k8s"
+    resource_group_name = var.RESOURCE_GROUP_NAME
+    dns_prefix = "${var.RESOURCE_PREFIX}-k8s"
 
     default_node_pool {
       name = "default"
