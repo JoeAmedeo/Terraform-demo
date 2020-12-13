@@ -1,0 +1,35 @@
+name: Initialize Terraform Resources
+on: workflow_dispatch
+defaults:
+  run:
+    shell: bash
+jobs:
+  provision:
+    name: Initialize Terraform Resources
+    runs-on: ubuntu-latest
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      TENANT_ID: ${{ secrets.TENANT_ID }}
+      TENANT_DOMAIN: ${{ secrets.TENANT_DOMAIN}}
+      SERVICE_PRINCIPAL_NAME: ${{ secrets.SERVICE_PRINCIPAL_NAME }}
+      OBJECT_ID: ${{ secrets.OBJECT_ID }}
+      SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: run terraform
+        working-directory: ./terraform
+        run: |
+          terraform init -input=false
+          terraform plan -input=false -out=tfplan .
+          terraform apply -input=false tfplan
+          echo "upload the state file to key vault"
+        env:
+          TF_VAR_APP_ID: ${{ env.APP_ID }}
+          TF_VAR_PASSWORD: ${{ env.PASSWORD }}
+          TF_VAR_TENANT_ID: ${{ env.TENANT_ID }}
+          TF_VAR_SUBSCRIPTION_ID: ${{ env.SUBSCRIPTION_ID }}
+          TF_VAR_RESOURCE_GROUP_NAME: "joe-amedeo"
+          TF_VAR_REGION: "East US"
+          
