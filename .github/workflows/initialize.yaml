@@ -21,7 +21,7 @@ jobs:
       - name: run terraform
         working-directory: ./terraform
         run: |
-          terraform init -input=false
+          terraform init -input=false -backend=false
           terraform plan -input=false -out=tfplan .
           terraform apply -input=false tfplan
           echo "upload the state file to key vault"

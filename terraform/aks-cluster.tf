@@ -27,10 +27,6 @@ resource "azurerm_storage_container" "default" {
   container_access_type = "private"
 }
 
-resource "azurerm_storage_blob" "default" {
-  
-}
-
 resource "azurerm_kubernetes_cluster" "default" {
     name = "${var.RESOURCE_PREFIX}-aks"
     location = var.REGION
@@ -50,11 +46,5 @@ resource "azurerm_kubernetes_cluster" "default" {
 
     role_based_access_control {
       enabled = true
-    }
-
-    addon_profile {
-      kube_dashboard {
-          enabled = true
-      }
     }
 }
